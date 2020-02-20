@@ -1,3 +1,9 @@
+body {
+  background-color: tan;
+  font-size: 12px;
+  width: auto;
+}
+
 .header {
   grid-area: header;
   text-align: center;
@@ -8,7 +14,6 @@
   grid-area: menu;
   text-align: left;
 }
-
 
 
 .actions {
@@ -51,10 +56,15 @@
   padding: 10px;
 }
 
-
 .footer {
   grid-area: footer;
   padding: 3px;
+  text-align: center;
+  /*
+    align-items: center;
+justify-content: center;
+*/
+
 }
 
 
@@ -71,7 +81,7 @@
     'footer footer footer footer';
   grid-template-columns: 200px 150px auto auto;
   grid-gap: 2px;
-  padding: 0px;
+  padding: 1px;
 }
 
 .grid-container>div {
@@ -81,12 +91,11 @@
 
 #info_rarity {text-transform:capitalize;}
 
-
-body {
-  background-color: tan;
-  font-size: 12px;
-  width: auto;
+#info_oracle_text {
+	width: 40%;
 }
+
+
 
 
 #autoCrdNme {
@@ -100,7 +109,10 @@ body {
 }
 
 #cardName {
-  font-size: 16px;
+ font-weight: bold;
+ font-size:1.5em;
+ color: red;
+ line-height: normal;
 }
 
 
@@ -122,9 +134,8 @@ body {
 
 
 #actionResult {
-	text-align: center;
 	color: blue;
-	 background-color: yellow;
+	 background-color: white;
 }
 
 
