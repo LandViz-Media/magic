@@ -20,9 +20,9 @@
   <body>
 
     <div class="grid-container">
-      <div class="item1 title">Card Database Manager</div>
+      <div class="header title">Card Database Manager</div>
 
-      <div class="item2">
+      <div class="menuHeader">
         Menu Header
       </div>
 
@@ -65,8 +65,18 @@
 
       <div class="middleContent">
         <strong>Card Details</strong>
-        <br> Rarity: <span id="info_rarity">-</span>
-        <br> Collector number: <span id="info_collector_number">-</span>
+        <br> Rarity: <span id="info_rarity">-</span> &nbsp;&nbsp;&nbsp; #<span id="info_collector_number">-</span>
+
+        <br> Mana Cost: <span id="info_mana_cost">-</span>
+        <br> CMC: <span id="info_cmc">-</span>
+        <br> Type: <span id="info_type_line">-</span>
+
+        <br> Games: <span id="info_games">-</span>
+        <br> Legalities: <span id="info_legalities">-</span>
+
+        <br> <br> <span id="info_oracle_text">-</span>
+
+
 
       </div>
       <div class="rightContent">

@@ -1,10 +1,10 @@
-.item1 {
+.header {
   grid-area: header;
   text-align: center;
 }
 
 
-.item2 {
+.menuHeader {
   grid-area: menu;
   text-align: left;
 }
@@ -36,13 +36,13 @@
 .middleContent {
   grid-area: middle;
   text-align: left;
-    padding: 5px;
+  padding: 5px;
 }
 
 .rightContent {
   grid-area: right;
   text-align: left;
-    padding: 5px;
+  padding: 5px;
 }
 
 .mainBottomContent {
@@ -79,7 +79,7 @@
   /*padding: 5px 5px; */
 }
 
-
+#info_rarity {text-transform:capitalize;}
 
 
 body {
@@ -124,6 +124,7 @@ body {
 #actionResult {
 	text-align: center;
 	color: blue;
+	 background-color: yellow;
 }
 
 

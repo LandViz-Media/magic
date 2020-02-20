@@ -21,6 +21,9 @@ $(document).ready(function() {
       $('#selectCardSet').empty().append('<option selected="selected" value=""></option>');
       console.log("The selectCardSet has been emptied");
 
+      //reset rusults footer
+      $("#actionResult").html("")
+
     });
 
 
@@ -97,48 +100,62 @@ $(document).ready(function() {
 
     $("#submitBtn").show();  //show the submit button
 
-    selectedSet_i = parseInt($("#selectCardSet option:selected").val());
-    console.log(selectedSet_i);
+    // ssi - this is the selected set index and allows reference back to the retrieced json
 
-    //console.log(jsonCardList.data[selectedSet_i]);
-    image = jsonCardList.data[selectedSet_i].image_uris.small;
+    ssi = parseInt($("#selectCardSet option:selected").val());
+    console.log(ssi);
+
+    //console.log(jsonCardList.data[ssi]);
+    image = jsonCardList.data[ssi].image_uris.small;
     console.log(image);
 
     $('#cardImage').html('<img id="theImg" src="' + image + '" />');
 
-    //jsonCardList.data[selectedSet_i].name;
-    //jsonCardList.data[selectedSet_i].id;
+    //jsonCardList.data[ssi].name;
+    //jsonCardList.data[ssi].id;
 
-    $("#info_rarity").html(jsonCardList.data[selectedSet_i].rarity);
-    $("#info_collector_number").html(jsonCardList.data[selectedSet_i].collector_number);
 
+
+//Display Card Info and Collection Info
+    $("#info_rarity").html(jsonCardList.data[ssi].rarity);
+    $("#info_collector_number").html(jsonCardList.data[ssi].collector_number);
+
+
+	$("#info_mana_cost").html(jsonCardList.data[ssi].mana_cost);
+
+	$("#info_cmc").html(jsonCardList.data[ssi].cmc);
+	$("#info_type_line").html(jsonCardList.data[ssi].type_line);
+	$("#info_oracle_text").html(jsonCardList.data[ssi].oracle_text);
+	$("#info_games").html(jsonCardList.data[ssi].games);
+
+	$("#info_collector_legalities").html(jsonCardList.data[ssi].legalities.standard);
   });
 
 
 
 
   $("#submitBtn").click(function() {
-    //console.log("submitted selectedSet_i: "+selectedSet_i + " " + jsonCardList.data[selectedSet_i].name);
-    //console.log(jsonCardList.data[selectedSet_i].image_uris.small);
-    //console.log(jsonCardList.data[selectedSet_i].id);
+    //console.log("submitted selectedSet_i: "+ssi + " " + jsonCardList.data[ssi].name);
+    //console.log(jsonCardList.data[ssi].image_uris.small);
+    //console.log(jsonCardList.data[ssi].id);
 
     actionType = $("input[name='actionType']:checked").val();
     console.log(actionType);
 
     $.post('uploadInventory.php', {
       actionType: actionType,
-      name: jsonCardList.data[selectedSet_i].name,
+      name: jsonCardList.data[ssi].name,
       qty: $("#cardQty").val(),
       qtyFree: $("#qtyFree").val(),
       qtyScouts: $("#qtyScouts").val(),
-      id: jsonCardList.data[selectedSet_i].id,
-      set: jsonCardList.data[selectedSet_i].set,
-      set_name: jsonCardList.data[selectedSet_i].set_name,
-      image_small: jsonCardList.data[selectedSet_i].image_uris.small,
-      image_normal: jsonCardList.data[selectedSet_i].image_uris.normal,
-      image_large: jsonCardList.data[selectedSet_i].image_uris.large,
-      collector_number: jsonCardList.data[selectedSet_i].collector_number,
-      scryfall_api: jsonCardList.data[selectedSet_i].uri
+      id: jsonCardList.data[ssi].id,
+      set: jsonCardList.data[ssi].set,
+      set_name: jsonCardList.data[ssi].set_name,
+      image_small: jsonCardList.data[ssi].image_uris.small,
+      image_normal: jsonCardList.data[ssi].image_uris.normal,
+      image_large: jsonCardList.data[ssi].image_uris.large,
+      collector_number: jsonCardList.data[ssi].collector_number,
+      scryfall_api: jsonCardList.data[ssi].uri
 
     }).done(function( data ) {
     	//alert( "Data Loaded: " + data );
