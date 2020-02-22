@@ -5,7 +5,7 @@
     <meta name="description" content="MTG Card Search Test">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Database Manager2</title>
+    <title>Card Database Manager</title>
 
     <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="middleContent">
-        <strong>Card Details</strong>
+        <span id="cardName">---</span>
         <br> Rarity: <span id="info_rarity">-</span> &nbsp;&nbsp;&nbsp; #<span id="info_collector_number">-</span>
 
         <br> Mana Cost: <span id="info_mana_cost">-</span>
