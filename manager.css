@@ -81,7 +81,7 @@ justify-content: center;
     'footer footer footer footer';
   grid-template-columns: 200px 150px auto auto;
   grid-gap: 2px;
-  padding: 1px;
+  padding: 20px;
 }
 
 .grid-container>div {
