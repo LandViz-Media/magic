@@ -13,14 +13,14 @@
 
     <link href="manager.css" rel="stylesheet" type="text/css" />
 
-    <script src="selectCard.js?"></script>
+    <script src="selectCard.js"></script>
 
   </head>
 
   <body>
 
     <div class="grid-container">
-      <div class="header title">Card Database Manager</div>
+      <div class="header title">Card Database Manager v1</div>
 
       <div class="menuHeader">
         Menu Header
@@ -81,10 +81,18 @@
       </div>
       <div class="rightContent">
         <strong>Collection Info</strong>
-        <br> Qty: <span id="info_qty">0</span>
-        <br> All Set Qty: <span id="info_allSetQty">allSetQty</span>
+        <br> Total Qty: <span id="#info_totalQty">-</span>
+        <br> Total Sets: <span id="info_totalSets">-</span>
         <br>
       </div>
+
+
+
+
+
+
+
+
 
       <div class="mainBottomContent">
 
