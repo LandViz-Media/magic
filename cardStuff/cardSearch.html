@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="description" content="MTG Card Search">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MTG Cards</title>
+
+
+<link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+<style type="text/css" media="screen">
+	#cardName{
+		font-family: fantasy;
+	}
+</style>
+
+
+
+
+
+</head>
+<body>
+
+<label for="autoCrdNme">Card Name: </label>
+<input id="autoCrdNme">
+<br><br>
+<div id="cardName"></div>
+<div id="actionOptions">
+	Add to Inventory
+
+</div>
+
+</body>
+
+
+	<script>
+console.clear();
+
+cardNameList = [];
+
+$.getJSON( "https://api.scryfall.com/catalog/card-names", function( data ) {
+	//console.log(data.data[5])
+	//console.log(data.data.length);
+
+	$.each( data, function( key, val ) {
+		cardNameList.push( val);
+	});
+
+
+	$( "#autoCrdNme" ).autocomplete({
+		minLength: 3,
+		source: function (request, response) {
+			var results = $.ui.autocomplete.filter(cardNameList[3], request.term);
+			response(results.slice(0, 10));
+		},
+		close: function(el) {
+			$("#cardName").html(el.target.value + "<br>");
+        	//el.target.value = 'sdsf';
+
+
+        	$.getJSON( "https://api.scryfall.com/cards/named?exact="+el.target.value, function( cardData ) {
+				//console.log(data.data[5])
+				//console.log(data.data.length);
+
+				$.each( cardData, function( key, val ) {
+				cardNameList.push( val);
+  				});
+
+
+  				console.log(cardNameList[0]);
+
+  				//console.log(cardData.image_uris.small);
+  				image = cardData.image_uris.normal;
+
+
+  				$('#cardName').append('<img id="theImg" src="'+image+'" />')
+});
+
+
+
+
+    }
+	});
+});
+
+
+</script>
+
+
+
+
+
+</html>
