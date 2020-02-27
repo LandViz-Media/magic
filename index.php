@@ -60,7 +60,7 @@
 
       <!--Card Image Display-->
       <div class="leftContent">
-        <span id="cardImage"> <img src="https://img.scryfall.com/cards/small/front/4/5/457bc402-4c31-465c-95e1-694f686e257e.jpg?1557577122" width="146" height="204" alt="magic card image" /></span>
+        <span > <img id="cardImage" src="images/magic_card_back.jpg" width="146" height="204" alt="magic card image" /></span>
       </div>
 
       <div class="middleContent">
@@ -81,8 +81,11 @@
       </div>
       <div class="rightContent">
         <strong>Collection Info</strong>
-        <br> Total Qty: <span id="#info_totalQty">-</span>
-        <br> Total Sets: <span id="info_totalSets">-</span>
+        <br> Total Qty: <span id="info_totalQty">-</span>
+
+        <br>
+        <br> Sets: <br>
+        <span id="info_totalSets">-</span>
         <br>
       </div>
 
