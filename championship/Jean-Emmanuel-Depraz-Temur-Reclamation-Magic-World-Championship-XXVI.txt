@@ -1,0 +1,32 @@
+4 Expansion // Explosion (GRN) 224 (GRN) 224
+4 Expansion // Explosion (GRN) 224
+4 Steam Vents (GRN) 257
+4 Wilderness Reclamation (RNA) 149
+4 Growth Spiral (RNA) 178
+4 Breeding Pool (RNA) 246
+4 Stomping Ground (RNA) 259
+2 Temple of Epiphany (M20) 253
+2 Temple of Mystery (M20) 255
+4 Brazen Borrower (ELD) 39
+1 Thassa's Intervention (THB) 72
+4 Opt (ELD) 59
+2 Castle Vantress (ELD) 242
+2 Fabled Passage (ELD) 244
+2 Mystical Dispute (ELD) 58
+4 Storm's Wrath (THB) 157
+3 Uro, Titan of Nature's Wrath (THB) 229
+2 Island (THB) 280
+2 Mountain (THB) 284
+1 Forest (THB) 286
+2 Temple of Abandon (THB) 244
+1 Negate (M20) 69
+2 Chemister's Insight (GRN) 32 
+
+ 3 Aether Gust (M20) 42
+2 Mystical Dispute (ELD) 58
+4 Scorching Dragonfire (ELD) 139
+2 Negate (M20) 69
+1 Fry (M20) 140
+1 Chandra's Pyrohelix (WAR) 120
+1 Legion Warboss (GRN) 109
+1 Niv-Mizzet, Parun (GRN) 192
