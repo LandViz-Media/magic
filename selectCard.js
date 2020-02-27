@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   console.clear();
 
   cardNameList = [];
@@ -20,6 +19,28 @@ $(document).ready(function() {
       //reset the other fields
       $('#selectCardSet').empty().append('<option selected="selected" value=""></option>');
       console.log("The selectCardSet has been emptied");
+
+	  //reset card image
+
+	  $('#cardImage').attr("src", "images/magic_card_back.jpg");
+
+	  //reset the quantities to zero
+      $("#cardQty").val(1);
+      $("#qtyFree").val(0);
+      $("#qtyScouts").val(0);
+
+      $("#cardName").html("---");
+      $("#info_rarity").html("-");
+      $("#info_collector_number").html("-");
+      $("#info_mana_cost").html("-");
+      $("#info_cmc").html("-");
+      $("#info_type_line").html("-");
+      $("#info_games").html("-");
+      $("#info_legalities").html("-");
+      $("#info_oracle_text").html("-");
+
+      $("#info_totalQty").html("-");
+      $("#info_totalSets").html("-");
 
       //reset rusults footer
       $("#actionResult").html("")
@@ -105,11 +126,13 @@ $(document).ready(function() {
     ssi = parseInt($("#selectCardSet option:selected").val());
     console.log(ssi);
 
+    getCollectionStats(jsonCardList.data[ssi].name);
+
     //console.log(jsonCardList.data[ssi]);
     image = jsonCardList.data[ssi].image_uris.small;
     console.log(image);
 
-    $('#cardImage').html('<img id="theImg" src="' + image + '" />');
+    $('#cardImage').attr("src", image);
 
     //jsonCardList.data[ssi].name;
     //jsonCardList.data[ssi].id;
@@ -119,14 +142,12 @@ $(document).ready(function() {
 //Display Card Info and Collection Info
     $("#info_rarity").html(jsonCardList.data[ssi].rarity);
     $("#info_collector_number").html(jsonCardList.data[ssi].collector_number);
-
-
 	$("#info_mana_cost").html(jsonCardList.data[ssi].mana_cost);
-
 	$("#info_cmc").html(jsonCardList.data[ssi].cmc);
 	$("#info_type_line").html(jsonCardList.data[ssi].type_line);
 	$("#info_oracle_text").html(jsonCardList.data[ssi].oracle_text);
 	$("#info_games").html(jsonCardList.data[ssi].games);
+	console.log(jsonCardList.data[ssi].games);
 
 	$("#info_collector_legalities").html(jsonCardList.data[ssi].legalities.standard);
   });
@@ -163,25 +184,49 @@ $(document).ready(function() {
 		$("#autoCrdNme").val("");
 
 		if (data == "Inserted") {
-			$("#actionResult").html("A new record was inserted.")
+			$("#actionResult").html("A new record was inserted!")
 		} else if (data == "Updated"){
-			$("#actionResult").html("A new record was inserted.")
+			$("#actionResult").html("The record was updated!")
 		}else{
 				alert("There was an error - check the DB and console.")
-			}
+		}
+		//call function to update the collection info
+		getCollectionStats(jsonCardList.data[ssi].name);
+
+
   });
 
 
 
-    //upons success need to reset the form
+    //upon success need to reset the form
 
   });
 
 
-  //establish action interface options
+ //establish action interface options
 
 
-// Get the Collection info to display in the info windo for the card
+// Get the Collection stats for info window  function
+
+function getCollectionStats(theCardName) {
+	   $.post('cardCollectionStat.php', {
+		   name: theCardName
+		}).done(function( data ) {
+
+			cardCollectionInfo = data.split(";");
+			//alert(cardCollectionInfo);
+			//alert(cardCollectionInfo[0]+"-"+cardCollectionInfo[1]);
+			//console.log("cci "+cardCollectionInfo[0]);
+			$("#info_totalQty").html(cardCollectionInfo[0]);
+			$("#info_totalSets").html(cardCollectionInfo[1]);
+
+
+ 	});
+
+ };
+
+
+
 
 
 
