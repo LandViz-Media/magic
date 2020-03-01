@@ -7,7 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Card Inventory List</title>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 
 
@@ -33,8 +33,10 @@ html, body {
 
 
 
+<br><br>
 
 
+<!--
 
 <i class="ms ms-u"></i>
 <i class="ms ms-g ms-cost"></i>
@@ -43,7 +45,7 @@ html, body {
 
 <i class="ms ms-wu ms-cost"></i>
 <i class="ms ms-2b ms-cost ms-shadow"></i>
-
+-->
 
 
 <?php
@@ -59,9 +61,8 @@ $database = 'landv_magic';
 
 
 
-
-$setCode = "THB";
-$rarity = "uncommon";
+$setCode = $_POST["set"];
+$rarity = $_POST["rarity"];
 
 $displayText = "";
 
