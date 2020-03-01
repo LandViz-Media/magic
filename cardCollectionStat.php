@@ -23,9 +23,9 @@ $table = 's_cardInventory';
 
 //make sure there is data to add otherwise end.
 //if (isset($_POST['id']) AND !empty($_POST['id'])) {
-	//$name = addslashes($_POST['name']);
+	$name = addslashes($_POST['name']);
 
-	$name = "Mountain";
+	//$name = "Mountain";
 
 
 	$sql = "SELECT qty, set_short FROM $table WHERE name = '$name'";
@@ -52,7 +52,7 @@ $returnResult .= $qty.": ".$set_short.",";
 
 $returnResult = rtrim($returnResult, ",");
 
-print $qtySum.",".$returnResult;
+print $qtySum.";".$returnResult;
 
 
 
