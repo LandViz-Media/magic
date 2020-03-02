@@ -51,24 +51,43 @@ while($row = $result->fetch_assoc()) {
         $distinctSets = $row['distinctSets'];
     }
 
- $sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 3";
+
+//Get the percent of top three
+$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 3";
 $result = $conn->query($sql);
 
 while($row = $result->fetch_assoc()) {
         $sumSetQty = $row['sumSetQty'];
         $set_short = $row['set_short'];
 
-        $setCountOutput .= $set_short.": ".$sumSetQty.", ";
+        $setCountOutput .= $set_short.": ".$sumSetQty.", <br>";
         $y = $y + $sumSetQty;
     }
 
-     $percentInSets = $y/$sumCards *100;
-     $percentInSets = number_format($percentInSets, 2);
-
-$setCountOutput = substr($setCountOutput, 0, -2);
+$percentInSets = $y/$sumCards *100;
+$percentInSets = number_format($percentInSets, 2);
 
 
-echo "The $server database contains $sumCards cards, $countRecords unique card IDs and $distinctCardNames card names across $distinctSets  sets. The largest three sets based on total cards are $setCountOutput or approximately $percentInSets% of the inventory.";
+//generate list of sets
+$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC";
+$result = $conn->query($sql);
+
+while($row = $result->fetch_assoc()) {
+        $sumSetQty = $row['sumSetQty'];
+        $set_short = $row['set_short'];
+
+        $setCountOutput .= $set_short.": ".$sumSetQty.", <br>";
+    }
+
+
+
+
+//$setCountOutput = substr($setCountOutput, 0, -2);
+
+
+
+
+echo "The $server database contains $sumCards cards, $countRecords unique card IDs and $distinctCardNames card names across $distinctSets  sets. The largest three sets based on total cards is $percentInSets% of the inventory.<br>$setCountOutput";
 
 
 ?>
