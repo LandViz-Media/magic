@@ -13,14 +13,14 @@
 
     <link href="manager.css" rel="stylesheet" type="text/css" />
 
-    <script src="selectCard.js"></script>
+    <script src="selectCard.js?version=3"></script>
 
   </head>
 
   <body>
 
     <div class="grid-container">
-      <div class="header title">Card Database Manager v1</div>
+      <div class="header title">Card Database Manager v1.33</div>
 
       <div class="menuHeader">
         Menu Header
@@ -31,17 +31,21 @@
 
         Action:
         <br>
-        <input type="radio" id="lookupCard" name="actionType" value="lookupCard" checked>Lookup Card
+        <input type="radio" id="lookupCard" name="actionType" value="lookupCard" checked> Lookup card
         <br>
-        <input type="radio" id="addInv" name="actionType" value="addInv">Add to inventory
+        <input type="radio" id="addInv" name="actionType" value="addInv"> Add to inventory
         <br>
-        <input type="radio" id="AddWantList" name="actionType" value="AddWantList">Add to wanted list
+        <input type="radio" id="AddWantList" name="actionType" value="AddWantList"> Add to wanted list
         <br>
-        <input type="radio" id="AddDeckInv" name="actionType" value="AddDeckInv">Add to inventory and deck
         <br>
-        <input type="radio" id="MoveInv2Deck" name="actionType" value="MoveInv2Deck">Move from inventory to deck
+        <strong>Deck Management</strong><br>
+        <input type="radio" id="makeDeck" name="actionType" value="AddDeckInv"> Create a deck
         <br>
-        <input type="radio" id="ReturnDeck2Inv" name="actionType" value="ReturnDeck2Inv">Return from deck to inventory
+        <input type="radio" id="AddDeckInv" name="actionType" value="AddDeckInv"> Add to inventory and deck
+        <br>
+        <input type="radio" id="MoveInv2Deck" name="actionType" value="MoveInv2Deck"> Move from inventory to deck
+        <br>
+        <input type="radio" id="ReturnDeck2Inv" name="actionType" value="ReturnDeck2Inv"> Return from deck to inventory
         <br>
 
       </div>
@@ -105,16 +109,20 @@
           </select>
         </span>
 
+
+
         <span class="invOptions">
           Qty: <input id="cardQty" name="cardQty" value=1 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Qty Free: <input id="qtyFree" name="qtyFree" value=0 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Scoutbox Qty: <input id="qtyScouts" name="qtyScouts" value=0 size=3><br>
         </span>
 
+
+
         <br>
         <button type="button" id="submitBtn">Submit</button>
 
-      </div>
+      </div>  <!--end the mainBottomContent Area -->
 
       <div class="footer">
 
