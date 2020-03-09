@@ -122,10 +122,9 @@ justify-content: center;
   display: none;
 }
 
-.invOptions {
-  display: show;
+#invOptions {
+  display: none;
 }
-
 
 #submitBtn {
   display: none;
