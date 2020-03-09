@@ -1,8 +1,13 @@
 <?php
 	 //header("Access-Control-Allow-Origin: *");
 
-require("connect_local.php");
+$server = $_SERVER['SERVER_NAME'];
+if ($server == "localhost") {
+	require("connect_local.php");
 
+}else{
+	require("../conn1.php");
+}
 
 
 $database = 'landv_magic';
