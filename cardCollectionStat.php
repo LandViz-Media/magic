@@ -1,8 +1,13 @@
 <?php
 	 //header("Access-Control-Allow-Origin: *");
 
-require("connect_local.php");
+$server = $_SERVER['SERVER_NAME'];
+if ($server == "localhost") {
+	require("connect_local.php");
 
+}else{
+	require("../conn1.php");
+}
 
 
 $database = 'landv_magic';
@@ -28,7 +33,7 @@ $table = 's_cardInventory';
 	//$name = "Mountain";
 
 
-	$sql = "SELECT qty, set_short FROM $table WHERE name = '$name'";
+	$sql = "SELECT qty, set_short FROM $table WHERE name = '$name' ORDER BY set_short, collector_number";
 	//$sql = "SELECT * FROM $table ";
 $result = $conn->query($sql);
 
@@ -46,11 +51,11 @@ $set_short = $row['set_short'];
 
 $qtySum = $qtySum + $qty;
 
-$returnResult .= $qty.": ".$set_short.",";
+$returnResult .= $set_short.": ".$qty."<br>";
 
 	}
 
-$returnResult = rtrim($returnResult, ",");
+//$returnResult = rtrim($returnResult, ",");
 
 print $qtySum.";".$returnResult;
 
