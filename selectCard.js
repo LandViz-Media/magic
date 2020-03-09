@@ -2,7 +2,7 @@ $(document).ready(function() {
       console.clear();
 
       cardNameList = [];
-      var cardSearchURL, jsonCardList;
+      var cardSearchURL, jsonCardList, actionType;
 
 
 
@@ -108,17 +108,14 @@ $(document).ready(function() {
               //retrieves all the cards, limit to just those in english
               if (cardPrintsData.data[i].lang == "en") {
                 console.log(i + " " + set + " " + set_name + " " + released_at);
-                //add set options to select menu. If just one option then auto select it
+                //add set options to select menu. If just one option then auto select it otherwise display the menu of options
                 if (cardPrintsData.total_cards < 2) {
                   $('#selectCardSet').empty().append('<option value="' + i + '" selected>' + set + ': ' + set_name + ' ' + released_at + '</option>');
-                  console.log("The selectCardSet has been emptied since there is just one set option. It waas then refilled");
+                  console.log("The selectCardSet has been emptied since there is just one set option. It was then refilled");
 
                   $('#selectCardSet').trigger('change');
                   //$("#submitBtn").show();  //show the button for submission since there is just one set
-                  actionSubmissionOptions();
-
-
-
+                 // actionSubmissionOptions();
 
                 } else {
                   $('#selectCardSet').append('<option value="' + i + '">' + set + ': ' + set_name + ' ' + released_at + '</option>');
@@ -135,7 +132,7 @@ $(document).ready(function() {
 
 
       $('#selectCardSet').change(function() {
-        console.log("selectCardSet changed");
+        console.log("selectCardSet changed automatically");
 
         // ssi - this is the selected set index and allows reference back to the retrieced json
 
@@ -176,43 +173,39 @@ $(document).ready(function() {
 
 
 
-      //determine which action submission info to display based on seleccted action
+      //determine which action is selected to allow for display of correct input features
 
 
 
 
+		function actionSubmissionOptions() {
 
-	  function actionSubmissionOptions() {
+			actionType = $("input[name='actionType']:checked").val();
+			console.log(actionType);
 
-	  	actionType = $("input[name='actionType']:checked").val();
-	  	console.log(actionType);
-
-
-
-
-        if (actionType == "addInv") {
-          $("#submitBtn").show(); //show the submit button
-          $("invOptions").show() //show the add to inventory options
-
-        } else {
-          alert("Select a different action as that one is not yet implemented")
-        }
+			if (actionType == "addInv") {
+				$("#submitBtn").show(); //show the submit button
+				$("#invOptions").show() //show the add to inventory options
+				} else {
+					alert("Select a different action as that one is not yet implemented")
+				}
+		}; //ENDS ACTIONSUBMISSSION FUNCTION
 
 
-if (actionType == "addInv") {
+
+
 
 	  $("#submitBtn").click(function() {
           //console.log("submitted selectedSet_i: "+ssi + " " + jsonCardList.data[ssi].name);
           //console.log(jsonCardList.data[ssi].image_uris.small);
           //console.log(jsonCardList.data[ssi].id);
+		  console.log("chris");
 
 
-
-
-
+actionType = '';
             // Add to Inventory action option
             $.post('uploadInventory.php', {
-              actionType: actionType,
+              //actionType: actionType,
               name: jsonCardList.data[ssi].name,
               qty: $("#cardQty").val(),
               qtyFree: $("#qtyFree").val(),
@@ -241,12 +234,17 @@ if (actionType == "addInv") {
               getCollectionStats(jsonCardList.data[ssi].name);
 			}); //end done function
 
-	}); //end SUBMIT BUTTON FUNCTION
+
+		}); //end SUBMIT BUTTON FUNCTION
+
+
+
+
 //upon success need to reset the form
-        };
 
 
-      } //ENDS ACTIONSUBMISSSION FUNCTION
+
+
 
 
 
