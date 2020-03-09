@@ -40,9 +40,9 @@ $table = 's_cardInventory';
 
 
 
-	$qtyFree  = $qty;
+	//$qtyFree  = $qty;
 	//$qtyScouts = 0;
-	$qtyScouts = $qty;
+	//$qtyScouts = $qty;
 
 /*
 	$id = "abcdefg";
