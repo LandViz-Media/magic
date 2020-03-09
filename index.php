@@ -13,14 +13,14 @@
 
     <link href="manager.css" rel="stylesheet" type="text/css" />
 
-    <script src="selectCard.js?version=3"></script>
+    <script src="selectCard.js?version=1.22"></script>
 
   </head>
 
   <body>
 
     <div class="grid-container">
-      <div class="header title">Card Database Manager v1.33</div>
+      <div class="header title">Card Database Manager v1.22</div>
 
       <div class="menuHeader">
         Menu Header
@@ -33,7 +33,7 @@
         <br>
         <input type="radio" id="lookupCard" name="actionType" value="lookupCard" checked> Lookup card
         <br>
-        <input type="radio" id="addInv" name="actionType" value="addInv"> Add to inventory
+        <input type="radio" id="addInv" name="actionType" value="addInv" checked> Add to inventory
         <br>
         <input type="radio" id="AddWantList" name="actionType" value="AddWantList"> Add to wanted list
         <br>
@@ -53,7 +53,7 @@
       <!--MainTop- card selector-->
       <div class="mainTopContent">
         Card Name:
-        <input id="autoCrdNme">
+        <input id="autoCrdNme" spellcheck="false">
         <br>
         <br> Select Card Set:
         <select id="selectCardSet" width="50px">
@@ -111,7 +111,7 @@
 
 
 
-        <span class="invOptions">
+        <span id="invOptions">
           Qty: <input id="cardQty" name="cardQty" value=1 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Qty Free: <input id="qtyFree" name="qtyFree" value=0 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Scoutbox Qty: <input id="qtyScouts" name="qtyScouts" value=0 size=3><br>
