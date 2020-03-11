@@ -114,7 +114,10 @@
         <span id="invOptions">
           Qty: <input id="cardQty" name="cardQty" value=1 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           Qty Free: <input id="qtyFree" name="qtyFree" value=0 size=3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          Scoutbox Qty: <input id="qtyScouts" name="qtyScouts" value=0 size=3><br>
+          Scoutbox Qty: <input id="qtyScouts" name="qtyScouts" value=0 size=3><br><br>
+          		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Deck Name: <input id="deckName" name="deckName" value="CJS Theros Prerelease" size=15>
+          Deck Color: <input id="deckColor" name="deckColor" value="Unsleeved" size=10><br>
         </span>
 
 
