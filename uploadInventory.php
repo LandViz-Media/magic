@@ -23,7 +23,7 @@ if ($conn->connect_error) {
     //die("Connection failed: " . $conn->connect_error);
 }
 
-$table = 's_cardInventory';
+
 
 
 //make sure there is data to add otherwise end.
@@ -34,6 +34,8 @@ $table = 's_cardInventory';
 	$qty = $_POST['qty'];
 	$qtyFree = $_POST['qtyFree'];
 	$qtyScouts = $_POST['qtyScouts'];
+	$deckName = $_POST['deckName'];
+	$deckColor = $_POST['deckColor'];
 	$set_short = $_POST['set'];
 	$set_name = addslashes($_POST['set_name']);
 	$image_small = $_POST['image_small'];
@@ -63,6 +65,37 @@ $table = 's_cardInventory';
 
 
 
+
+
+
+
+
+$qtyDeck = 0;
+
+$table = 's_cardDeckInventory';
+
+//if there is a deck then add it to the deck list
+if ($deckName != "") {
+
+	$qtyDeck = 1;
+
+	$sql = "INSERT INTO $table (id, name, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, deckName, deckColor ) VALUES ('$id', '$name', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$deckName', '$deckColor')";
+
+	$result = $conn->query($sql);
+
+}
+
+
+
+
+
+
+
+
+$table = 's_cardInventory';
+
+
+
 //$actionType
 
 $sql = "SELECT * FROM $table WHERE id = '$id'";
@@ -70,26 +103,29 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 
-	$sql = "UPDATE s_cardInventory SET qty = qty + $qty, qtyFree = qtyFree + $qtyFree, qtyScouts = qtyScouts + $qtyScouts WHERE id = '$id'";
+	$sql = "UPDATE s_cardInventory SET qty = qty + $qty, qtyFree = qtyFree + $qtyFree, qtyScouts = qtyScouts + $qtyScouts, qtyDeck = qtyDeck + $qtyDeck WHERE id = '$id'";
 	$theResult = "Updated";
 
 } else {
 
-	$sql = "INSERT INTO $table (id, name, qty, qtyFree, qtyScouts, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api ) VALUES ('$id', '$name', '$qty', '$qtyFree', '$qtyScouts', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api' )";
+	$sql = "INSERT INTO $table (id, name, qty, qtyFree, qtyScouts, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, qtyDeck ) VALUES ('$id', '$name', '$qty', '$qtyFree', '$qtyScouts', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$qtyDeck')";
 		$theResult = "Inserted";
 }
 
-	if ($conn->query($sql) === TRUE) {
-	    echo $theResult;
-	} else {
-	    echo "Error: " . $sql . "<br>" . $conn->error;
-	}
-
-	$conn->close();
+if ($conn->query($sql) === TRUE) {
+    echo $theResult;
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
 
 
-//}else{
-//	print "There is no data to work with dude!";
-//}
+
+
+
+
+
+$conn->close();
+
+
 
 	?>
