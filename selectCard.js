@@ -66,7 +66,7 @@ $(document).ready(function() {
           minLength: 3,
           source: function(request, response) {
             var results = $.ui.autocomplete.filter(cardNameList[3], request.term);
-            response(results.slice(0, 12)); //limits to 12 names
+            response(results.slice(0, 14)); //limits to 12 names
           },
           close: function(el) {
             //get the exact card name to use to search Scryfall DB
@@ -210,6 +210,8 @@ actionType = '';
               qty: $("#cardQty").val(),
               qtyFree: $("#qtyFree").val(),
               qtyScouts: $("#qtyScouts").val(),
+              deckName: $("#deckName").val(),
+              deckColor: $("#deckColor").val(),
               id: jsonCardList.data[ssi].id,
               set: jsonCardList.data[ssi].set,
               set_name: jsonCardList.data[ssi].set_name,
@@ -228,7 +230,7 @@ actionType = '';
               } else if (data == "Updated") {
                 $("#actionResult").html("The record was updated!")
               } else {
-                alert("There was an error - check the DB and console.")
+                alert(data+"<br>There was an error - check the DB and console.")
               }
               //call function to update the collection info
               getCollectionStats(jsonCardList.data[ssi].name);
