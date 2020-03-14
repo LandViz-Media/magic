@@ -47,7 +47,7 @@ if ($conn->connect_error) {
 
 
 
-	//$qtyFree  = $qty;
+	$qtyFree  = $qty;
 	//$qtyScouts = 0;
 	//$qtyScouts = $qty;
 
@@ -65,6 +65,7 @@ if ($conn->connect_error) {
 
 
 
+$qtyFoil = 1;
 
 
 
@@ -79,7 +80,7 @@ if ($deckName != "") {
 
 	$qtyDeck = 1;
 
-	$sql = "INSERT INTO $table (id, name, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, deckName, deckColor ) VALUES ('$id', '$name', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$deckName', '$deckColor')";
+	$sql = "INSERT INTO $table (id, name, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, deckName, deckColor, qtyFoil) VALUES ('$id', '$name', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$deckName', '$deckColor', '$qtyFoil')";
 
 	$result = $conn->query($sql);
 
@@ -103,12 +104,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
 
-	$sql = "UPDATE s_cardInventory SET qty = qty + $qty, qtyFree = qtyFree + $qtyFree, qtyScouts = qtyScouts + $qtyScouts, qtyDeck = qtyDeck + $qtyDeck WHERE id = '$id'";
+	$sql = "UPDATE s_cardInventory SET qty = qty + $qty, qtyFree = qtyFree + $qtyFree, qtyScouts = qtyScouts + $qtyScouts, qtyDeck = qtyDeck + $qtyDeck, qtyFoil = qtyFoil + $qtyFoil WHERE id = '$id'";
 	$theResult = "Updated";
 
 } else {
 
-	$sql = "INSERT INTO $table (id, name, qty, qtyFree, qtyScouts, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, qtyDeck ) VALUES ('$id', '$name', '$qty', '$qtyFree', '$qtyScouts', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$qtyDeck')";
+	$sql = "INSERT INTO $table (id, name, qty, qtyFree, qtyScouts, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, qtyDeck, qtyFoil) VALUES ('$id', '$name', '$qty', '$qtyFree', '$qtyScouts', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$qtyDeck', '$qtyFoil')";
 		$theResult = "Inserted";
 }
 
