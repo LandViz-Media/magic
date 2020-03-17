@@ -65,13 +65,13 @@ if ($conn->connect_error) {
 
 
 
-$qtyFoil = 1;
+$qtyFoil = 0;
 
 
 
 
 
-$qtyDeck = 0;
+//$qtyDeck = 0;
 
 $table = 's_cardDeckInventory';
 
