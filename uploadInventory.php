@@ -80,7 +80,7 @@ if ($deckName != "") {
 
 	$qtyDeck = 1;
 
-	$sql = "INSERT INTO $table (id, name, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, deckName, deckColor, qtyFoil) VALUES ('$id', '$name', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$deckName', '$deckColor', '$qtyFoil')";
+	$sql = "INSERT INTO $table (id, name, set_short, set_name, image_small, image_normal, image_large, collector_number, scryfall_api, deckName, deckColor) VALUES ('$id', '$name', '$set_short', '$set_name', '$image_small', '$image_normal', '$image_large', '$collector_number', '$scryfall_api', '$deckName', '$deckColor')";
 
 	$result = $conn->query($sql);
 
