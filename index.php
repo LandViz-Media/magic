@@ -13,14 +13,14 @@
 
     <link href="manager.css" rel="stylesheet" type="text/css" />
 
-    <script src="selectCard.js?version=1.22"></script>
+    <script src="selectCard.js?version=1.23"></script>
 
   </head>
 
   <body>
 
     <div class="grid-container">
-      <div class="header title">Card Database Manager v1.22</div>
+      <div class="header title">Card Database Manager v1.23</div>
 
       <div class="menuHeader">
         Menu Header
@@ -29,10 +29,13 @@
       <!--Actions -->
       <div class="actions">
 
-        Action:
+        <strong>Review Collection</strong><br>
+        <input type="radio" id="lookupCollectionStats" name="actionType" value="lookupCollectionStats" checked> Lookup Collection Stats
         <br>
         <input type="radio" id="lookupCard" name="actionType" value="lookupCard" checked> Lookup card
         <br>
+        <br>
+         <strong>Modify Collection</strong><br>
         <input type="radio" id="addInv" name="actionType" value="addInv" checked> Add to inventory
         <br>
         <input type="radio" id="AddWantList" name="actionType" value="AddWantList"> Add to wanted list

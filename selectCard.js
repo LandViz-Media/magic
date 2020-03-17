@@ -273,5 +273,24 @@ actionType = '';
 
 
 
+	//Listen for request to lookup collection stats.
+	$('input:radio[name="actionType"]').change(function() {
+
+		if (this.value == "lookupCollectionStats") {
+			$.post('stats_totalCards.php', {
+            	//actionType: actionType,
+				list: "top3",
+			}).done(function(data) {
+				$('#info_totalSets').html(data);
+			})
+		}
+	})
+
+
+
+
+
+
+
 }); // end jQuery on ready
 

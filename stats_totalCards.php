@@ -9,6 +9,14 @@ if ($server == "localhost") {
 	require("../conn1.php");
 }
 
+
+
+
+$list = $_POST['list'];
+
+
+
+
 $database = 'landv_magic';
 
 // Create connection
@@ -27,67 +35,78 @@ if ($conn->connect_error) {
 $table = 's_cardInventory';
 
 
-$sql = "SELECT SUM(qty) AS sumCards, COUNT(invID) AS countRecords FROM $table";
-$result = $conn->query($sql);
+if ($list == "top3") {
 
-while($row = $result->fetch_assoc()) {
-        $sumCards = $row['sumCards'];
-        $countRecords = $row['countRecords'];
-    }
+	$y = 0;
 
+	$sql = "SELECT SUM(qty) AS sumCards, COUNT(invID) AS countRecords FROM $table";
+	$result = $conn->query($sql);
 
-$sql = "SELECT COUNT(DISTINCT(name)) AS distinctCardNames FROM $table";
-$result = $conn->query($sql);
-
-while($row = $result->fetch_assoc()) {
-        $distinctCardNames = $row['distinctCardNames'];
-    }
+	while($row = $result->fetch_assoc()) {
+	        $sumCards = $row['sumCards'];
+	        $countRecords = $row['countRecords'];
+	    }
 
 
-$sql = "SELECT COUNT(DISTINCT(set_short)) AS distinctSets FROM $table";
-$result = $conn->query($sql);
+	$sql = "SELECT COUNT(DISTINCT(name)) AS distinctCardNames FROM $table";
+	$result = $conn->query($sql);
 
-while($row = $result->fetch_assoc()) {
-        $distinctSets = $row['distinctSets'];
-    }
-
-
-//Get the percent of top three
-$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 3";
-$result = $conn->query($sql);
-
-while($row = $result->fetch_assoc()) {
-        $sumSetQty = $row['sumSetQty'];
-        $set_short = $row['set_short'];
-
-        $setCountOutput .= $set_short.": ".$sumSetQty.", <br>";
-        $y = $y + $sumSetQty;
-    }
-
-$percentInSets = $y/$sumCards *100;
-$percentInSets = number_format($percentInSets, 2);
+	while($row = $result->fetch_assoc()) {
+	        $distinctCardNames = $row['distinctCardNames'];
+	    }
 
 
-//generate list of sets
-$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC";
-$result = $conn->query($sql);
+	$sql = "SELECT COUNT(DISTINCT(set_short)) AS distinctSets FROM $table";
+	$result = $conn->query($sql);
 
-while($row = $result->fetch_assoc()) {
-        $sumSetQty = $row['sumSetQty'];
-        $set_short = $row['set_short'];
+	while($row = $result->fetch_assoc()) {
+	        $distinctSets = $row['distinctSets'];
+	    }
 
-        $setCountOutput .= $set_short.": ".$sumSetQty.", <br>";
-    }
+
+	//Get the percent of top three
+	$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 3";
+	$result = $conn->query($sql);
+
+	while($row = $result->fetch_assoc()) {
+	        $sumSetQty = $row['sumSetQty'];
+	        $set_short = $row['set_short'];
+
+	        $setCountOutput .= $set_short.": ".$sumSetQty." <br>";
+	        $y = $y + $sumSetQty;
+	    }
+
+	$percentInSets = $y/$sumCards *100;
+	$percentInSets = number_format($percentInSets, 2);
+
+	echo "The $server database contains $sumCards cards, $countRecords unique card IDs and $distinctCardNames card names across $distinctSets  sets. <br>The largest three sets based on total cards is $percentInSets% of the inventory.<br>$setCountOutput";
 
 
 
+}else {
 
-//$setCountOutput = substr($setCountOutput, 0, -2);
+	$sumCards = 0;
+
+	//generate list of sets
+	$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC";
+	$result = $conn->query($sql);
+
+	while($row = $result->fetch_assoc()) {
+	        $sumSetQty = $row['sumSetQty'];
+	        $set_short = $row['set_short'];
+
+			$sumCards = $sumCards + $sumSetQty;
+
+	        $setCountOutput .= $set_short.": ".$sumSetQty." <br>";
+	    }
+
+
+		echo "The $server database contains $sumCards cards spread over the following sets.<br>$setCountOutput";
 
 
 
+}
 
-echo "The $server database contains $sumCards cards, $countRecords unique card IDs and $distinctCardNames card names across $distinctSets  sets. The largest three sets based on total cards is $percentInSets% of the inventory.<br>$setCountOutput";
 
 
 ?>
