@@ -47,7 +47,7 @@ if ($conn->connect_error) {
 
 
 
-	$qtyFree  = $qty;
+	//$qtyFree  = $qty;
 	//$qtyScouts = 0;
 	//$qtyScouts = $qty;
 
