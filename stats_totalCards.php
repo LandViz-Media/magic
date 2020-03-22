@@ -35,7 +35,7 @@ if ($conn->connect_error) {
 $table = 's_cardInventory';
 
 
-if ($list == "top3") {
+if ($list == "top7") {
 
 	$y = 0;
 
@@ -65,7 +65,7 @@ if ($list == "top3") {
 
 
 	//Get the percent of top three
-	$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 3";
+	$sql = "select SUM(qty) as sumSetQty, set_short FROM $table GROUP BY set_short ORDER By SUM(qty) DESC LIMIT 7";
 	$result = $conn->query($sql);
 
 	while($row = $result->fetch_assoc()) {
